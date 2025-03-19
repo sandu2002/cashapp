@@ -11,73 +11,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-  int _selectedIndex = 0;
   Widget build(BuildContext context) {
     return Scaffold(
-      
       //
-      bottomNavigationBar: BottomNavigationBar(
-        
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColors.bgColor,
-        selectedItemColor: AppColors.mainTxtColor,
-        unselectedItemColor: Colors.grey.withOpacity(0.6),
-        selectedLabelStyle: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-        ),
-        unselectedLabelStyle: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-        ),
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 26,
-            ),
-            label: "",
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              Icons.wallet_rounded,
-              size: 26,
-            ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.attach_money_rounded,
-              size: 26,
-            ),
-            label: "",
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              size: 26,
-            ),
-            label: "",
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              Icons.access_time,
-              size: 26,
-            ),
-            label: "",
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-      ),
 
       //
-      body:SingleChildScrollView(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,9 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '\$88.44',
+                      '\$4,235,500.44',
                       style: TextStyle(
-                        color: Color(0xff343434) ,
+                        color: Color(0xff343434),
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
                       ),
@@ -192,9 +131,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
-                height: 16,),
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomCard(
                       bgColor: AppColors.bWhiteColor,

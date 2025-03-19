@@ -20,14 +20,14 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 160,
+      width: MediaQuery.of(context).size.width * 0.378,
       height: 50,
       child: ElevatedButton(
         onPressed: () {
           // Handle button press
         },
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(widget.bgColor),
+          backgroundColor: WidgetStateProperty.all(widget.bgColor),
         ),
         child: Text(
           widget.title,

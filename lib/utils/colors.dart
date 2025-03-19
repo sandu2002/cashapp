@@ -10,6 +10,8 @@ class AppColors {
   static const Color gButton =  Color(0xff01D651);
   static const Color pWhiteColor =  Color(0xff8420F4);
   static const Color bWhiteColor =  Color(0xff2D65DB);
+  static const Color glowButton =  Color.fromARGB(255, 9, 233, 95);
+  static const Color newColor = Color(0xffFF5733);
 
   //gradient colors
   

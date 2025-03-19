@@ -1,5 +1,5 @@
-import 'package:cashapp/pages/home_screen.dart';
-import 'package:cashapp/pages/send_money_screen.dart';
+import 'package:cashapp/pages/main_screen.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,6 +7,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,9 +16,10 @@ class MyApp extends StatelessWidget {
       title: 'Money App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        // ignore: deprecated_member_use
         scaffoldBackgroundColor: Colors.white70.withOpacity(0.97),
       ),
-      home: HomeScreen(),
+      home: MainScreen(),
     );
   }
 }
