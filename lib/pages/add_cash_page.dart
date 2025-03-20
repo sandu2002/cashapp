@@ -1,3 +1,4 @@
+import 'package:cashapp/pages/home_screen.dart';
 import 'package:cashapp/utils/colors.dart';
 import 'package:cashapp/utils/constants.dart';
 import 'package:cashapp/utils/text_style.dart';
@@ -61,10 +62,20 @@ class _AddCashPageState extends State<AddCashPage> {
                       ),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Icon(
-                          Icons.close,
-                          size: 30,
-                          color: AppColors.gButton,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(),
+                              ),
+                            );
+                          },
+                          child: Icon(
+                            Icons.close,
+                            size: 30,
+                            color: AppColors.gButton,
+                          ),
                         ),
                       ),
                     ),

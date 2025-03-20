@@ -14,17 +14,24 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   //current page index
   int _selectedIndex = 0;
+
   //int number = 0
   @override
   Widget build(BuildContext context) {
-    final List<Widget> pages = [HomeScreen(), SendMoney(),AddCash()];
+    final List<Widget> pages = [HomeScreen(), SendMoney(), AddCash()];
 
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColors.bgColor,
-        selectedItemColor: AppColors.mainTxtColor,
-        unselectedItemColor: Colors.grey.withOpacity(0.6),
+
+        backgroundColor:
+            _selectedIndex == 1 ? AppColors.gButton : AppColors.bgColor,
+        selectedItemColor:
+            _selectedIndex == 1 ? AppColors.bgColor : AppColors.mainTxtColor,
+        unselectedItemColor:
+            _selectedIndex == 1
+                ? Colors.white.withOpacity(0.45)
+                : Colors.grey.withOpacity(0.6),
         selectedLabelStyle: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w600,

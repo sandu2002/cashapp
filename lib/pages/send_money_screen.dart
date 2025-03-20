@@ -1,27 +1,16 @@
 import 'package:cashapp/utils/colors.dart';
 import 'package:cashapp/utils/constants.dart';
+import 'package:cashapp/widget/coustom_msg.dart';
 import 'package:flutter/material.dart';
 
-class SendMoney extends StatelessWidget {
+class SendMoney extends StatefulWidget {
   const SendMoney({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: PaymentScreen(),
-    );
-  }
+  State<SendMoney> createState() => _SendMoneyState();
 }
 
-class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({super.key});
-
-  @override
-  _PaymentScreenState createState() => _PaymentScreenState();
-}
-
-class _PaymentScreenState extends State<PaymentScreen> {
+class _SendMoneyState extends State<SendMoney> {
   String amount = "";
 
   void _onKeyboardTap(String value) {
@@ -41,7 +30,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         return AlertDialog(
           title: const Text("Confirm Payment"),
           content: Text(
-            "you need to pay 50\$ fee to pay \$${amount.isEmpty ? "0" : amount}?",
+            "You need to pay a \$50 fee to send \$${amount.isEmpty ? "0" : amount}. Proceed?",
           ),
           actions: [
             TextButton(
@@ -49,10 +38,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               child: const Text("Cancel"),
             ),
             TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                // Add payment processing logic here
-              },
+              onPressed: () => Navigator.of(context).pop(), // Add payment logic here
               child: const Text("Confirm"),
             ),
           ],
@@ -68,7 +54,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [_buildHeader(), _buildKeypad(), _buildActionButtons()],
+          children: [
+            _buildHeader(),
+            _buildKeypad(),
+            _buildActionButtons(),
+          ],
         ),
       ),
     );
@@ -84,11 +74,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Icon(
-                  Icons.qr_code_scanner_outlined,
-                  size: 35,
-                  color: Colors.white,
-                ),
+                const Icon(Icons.qr_code_scanner_outlined, size: 35, color: Colors.white),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image.asset(
@@ -104,11 +90,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           const SizedBox(height: 10),
           Text(
             "\$${amount.isEmpty ? "0" : amount}",
-            style: const TextStyle(
-              fontSize: 80,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-            ),
+            style: const TextStyle(fontSize: 80, fontWeight: FontWeight.w500, color: Colors.white),
           ),
           const SizedBox(height: 50),
           _buildCurrencyDropdown(),
@@ -125,37 +107,37 @@ class _PaymentScreenState extends State<PaymentScreen> {
         color: const Color.fromARGB(255, 20, 225, 98).withOpacity(0.9),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 28, right: 0, top: 0, bottom: 0),
+        padding: EdgeInsets.only(left: 28),
         child: DropdownButton<String>(
           value: "USD",
           dropdownColor: Colors.green,
-          style: const TextStyle(color: Colors.white, fontSize: 18),
-          underline: const SizedBox(),
-          icon: const Icon(Icons.arrow_drop_down, color: Colors.white),
-          items: const [DropdownMenuItem(value: "USD", child: Text("USD"))],
-          onChanged: (value) {},
+          style: TextStyle(color: Colors.white, fontSize: 18,fontWeight: FontWeight.w500),
+          underline: SizedBox(),
+          icon: Icon(Icons.arrow_drop_down, color: Colors.white),
+          items: [DropdownMenuItem(value: "USD", child: Text("USD"))],
+          onChanged: null, // Disabled as there's only one currency
         ),
       ),
     );
   }
 
   Widget _buildKeypad() {
-    List<List<String>> keys = [
+    const List<List<String>> keys = [
       ["1", "2", "3"],
       ["4", "5", "6"],
       ["7", "8", "9"],
       [".", "0", "<"],
     ];
+
     return Column(
-      children:
-          keys
-              .map(
-                (row) => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: row.map((text) => _keyboardButton(text)).toList(),
-                ),
-              )
-              .toList(),
+      children: keys
+          .map(
+            (row) => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: row.map((text) => _keyboardButton(text)).toList(),
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -167,10 +149,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         width: 80,
         height: 60,
         alignment: Alignment.center,
-        child: Text(
-          text,
-          style: const TextStyle(fontSize: 24, color: Colors.white),
-        ),
+        child: Text(text, style: const TextStyle(fontSize: 24, color: Colors.white)),
       ),
     );
   }
@@ -181,53 +160,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CustomButton(
+          CustomMsgButton(
             bgColor: AppColors.glowButton,
             title: "Request",
             titleColor: AppColors.bgColor,
-            onTap: () {},
+            onTap: () {}, // Define action if needed
           ),
-          CustomButton(
+          CustomMsgButton(
             bgColor: AppColors.glowButton,
             title: "Pay",
             titleColor: AppColors.bgColor,
             onTap: _showPaymentPopup,
           ),
         ],
-      ),
-    );
-  }
-}
-
-/// Custom Button Component
-class CustomButton extends StatelessWidget {
-  final Color bgColor;
-  final String title;
-  final Color titleColor;
-  final VoidCallback? onTap; // Ensure this parameter exists
-
-  const CustomButton({
-    Key? key,
-    required this.bgColor,
-    required this.title,
-    required this.titleColor,
-    this.onTap, // Allow an optional onTap callback
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap, // Use the onTap callback
-      child: Container(
-        width: 150,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Center(
-          child: Text(title, style: TextStyle(color: titleColor, fontSize: 18)),
-        ),
       ),
     );
   }

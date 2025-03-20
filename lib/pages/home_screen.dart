@@ -1,9 +1,11 @@
+import 'package:cashapp/pages/send_money_screen.dart';
 import 'package:cashapp/utils/colors.dart';
 import 'package:cashapp/utils/constants.dart';
 import 'package:cashapp/utils/text_style.dart';
 import 'package:cashapp/widget/custom_button.dart';
 import 'package:cashapp/widget/custom_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -91,10 +93,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomButton(
-                          bgColor: const Color(0xffF5F5F5),
-                          title: "Add Cash",
-                          titleColor: AppColors.mainTxtColor,
+                        GestureDetector(
+                          onTap: () {
+                          GoRouter.of(context).go("/sendmoney");
+                          },
+                          child: CustomButton(
+                            bgColor: const Color(0xffF5F5F5),
+                            title: "Add Cash",
+                            titleColor: AppColors.mainTxtColor,
+                            
+                          ),
                         ),
                         CustomButton(
                           bgColor: const Color(0xffF5F5F5),

@@ -1,80 +1,32 @@
-import 'package:cashapp/utils/colors.dart';
-import 'package:cashapp/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-class CustomMsgCard extends StatefulWidget {
+class CustomMsgButton extends StatelessWidget {
   final Color bgColor;
   final String title;
-  final String img;
-  final String description;
-  final String subDescription;
-  const CustomMsgCard({
+  final Color titleColor;
+  final VoidCallback? onTap; // Ensure this parameter exists
+
+  const CustomMsgButton({
     super.key,
     required this.bgColor,
     required this.title,
-    required this.img,
-    required this.description,
-    required this.subDescription,
+    required this.titleColor,
+    this.onTap, // Allow an optional onTap callback
   });
 
   @override
-  State<CustomMsgCard> createState() => _CustomMsgCardState();
-}
-
-class _CustomMsgCardState extends State<CustomMsgCard> {
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-      ),
-      width: MediaQuery.of(context).size.width * 0.44,
-
-      child: Padding(
-        padding: const EdgeInsets.all(AppConstants.kDefaultPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  widget.title,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: AppColors.mainTxtColor,
-                  ).copyWith(fontWeight: FontWeight.w500),
-                ),
-                Icon(
-                  Icons.close,
-                  size: 15,
-                  color: const Color.fromARGB(255, 212, 210, 210),
-                ),
-              ],
-            ),
-            SizedBox(height: 8),
-            ClipRRect(
-              child: Image.asset(
-                widget.img,
-                width: 80,
-                height: 60,
-                //fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              widget.description,
-              style: TextStyle(
-                fontSize: 18,
-                color: AppColors.mainTxtColor,
-              ).copyWith(fontWeight: FontWeight.w500),
-            ),
-            Text(
-              widget.subDescription,
-              style: TextStyle(fontSize: 16, color: AppColors.subTxtColor),
-            ),
-          ],
+    return GestureDetector(
+      onTap: onTap, // Use the onTap callback
+      child: Container(
+        width: 150,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Center(
+          child: Text(title, style: TextStyle(color: titleColor, fontSize: 18)),
         ),
       ),
     );
