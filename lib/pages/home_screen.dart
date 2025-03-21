@@ -94,9 +94,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
-                          onTap: () {
-                          GoRouter.of(context).go("/sendmoney");
-                          },
                           child: CustomButton(
                             bgColor: const Color(0xffF5F5F5),
                             title: "Add Cash",

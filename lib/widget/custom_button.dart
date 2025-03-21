@@ -24,11 +24,19 @@ class _CustomButtonState extends State<CustomButton> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.378,
       height: 50,
-      child: Text(
-        widget.title,
-        style: AppTextStyles.appTitle.copyWith(
-          fontSize: 18,
-          color: widget.titleColor,
+      child: ElevatedButton(
+        onPressed: () {
+          // Handle button press
+        },
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.all(widget.bgColor),
+        ),
+        child: Text(
+          widget.title,
+          style: AppTextStyles.appTitle.copyWith(
+            fontSize: 18,
+            color: widget.titleColor,
+          ),
         ),
       ),
     );
