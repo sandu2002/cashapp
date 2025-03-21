@@ -1,6 +1,5 @@
 import 'package:cashapp/pages/home_screen.dart';
 import 'package:cashapp/pages/send_money_screen.dart';
-import 'package:cashapp/router/router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

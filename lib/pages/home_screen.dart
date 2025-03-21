@@ -1,11 +1,10 @@
-import 'package:cashapp/pages/send_money_screen.dart';
 import 'package:cashapp/utils/colors.dart';
 import 'package:cashapp/utils/constants.dart';
 import 'package:cashapp/utils/text_style.dart';
 import 'package:cashapp/widget/custom_button.dart';
 import 'package:cashapp/widget/custom_card.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
